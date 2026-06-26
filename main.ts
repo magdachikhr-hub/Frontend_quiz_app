@@ -18,10 +18,9 @@ const categoryWrapper = document.querySelector(".category_wrapper");
 async function getData() {
   const response = await fetch("http://localhost:3000/quizzes");
   const data: Quiz[] = await response.json();
+
   console.log(data);
   const newQuiz = new mainQuiz(data);
-  //   newQuiz.scoreIncrease();
-  //   console.log(newQuiz.score);
   //   newQuiz.questionsTotalNumber();
   //   console.log(newQuiz.questionsTotalNumber());
   renderCategory(newQuiz);
@@ -35,6 +34,7 @@ class mainQuiz {
   currentQuestionIndex: number;
   category: string | null;
   categoryObj: Quiz | null;
+
   constructor(data: Quiz[]) {
     this.data = data;
     this.score = 0;
@@ -91,3 +91,9 @@ function renderCategory(instance: mainQuiz) {
     });
   });
 }
+
+const darkMode = document.getElementById("dark_mode") as HTMLInputElement;
+
+darkMode.addEventListener("change", () => {
+  document.body.classList.toggle("dark", darkMode.checked);
+});

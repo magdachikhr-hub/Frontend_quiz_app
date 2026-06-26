@@ -5,8 +5,6 @@ async function getData() {
     const data = await response.json();
     console.log(data);
     const newQuiz = new mainQuiz(data);
-    //   newQuiz.scoreIncrease();
-    //   console.log(newQuiz.score);
     //   newQuiz.questionsTotalNumber();
     //   console.log(newQuiz.questionsTotalNumber());
     renderCategory(newQuiz);
@@ -63,5 +61,9 @@ function renderCategory(instance) {
         });
     });
 }
+const darkMode = document.getElementById("dark_mode");
+darkMode.addEventListener("change", () => {
+    document.body.classList.toggle("dark", darkMode.checked);
+});
 export {};
 //# sourceMappingURL=main.js.map
