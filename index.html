@@ -6,5 +6,63 @@
     <title>Document</title>
     <script type="module" src="./main.js"></script>
   </head>
-  <body></body>
+  <body>
+    <header>
+      <div class="title">
+        <img
+          id="category_logo"
+          src="./assets/images/icon-html.svg"
+          alt="logo"
+        />
+        <h2 id="category_title">accessibility</h2>
+      </div>
+      <div class="dark_mode">
+        <img src="./assets/images/icon-sun-dark.svg" alt="" />
+        <input type="checkbox" name="mode" id="dark_mode" />
+        <img src="./assets/images/icon-moon-dark.svg" alt="" />
+      </div>
+    </header>
+    <main>
+      <div class="container_one">
+        <div class="greeting">
+          <h1>Welcome to the <strong>Frontend Quiz!</strong></h1>
+          <span class="hint">Pick a subject to get started.</span>
+        </div>
+        <div class="category_wrapper"></div>
+      </div>
+      <div class="container_two" hidden>
+        <div class="question_container">
+          <span class="question_quantity"
+            >Question <span class="quantity"></span> of
+            <span class="total"></span
+          ></span>
+          <h3>
+            Which of these color contrast ratios defines the minimum WCAG 2.1
+            Level AA requirement for normal text?
+          </h3>
+          <progress value="0" min="0" max=""></progress>
+        </div>
+        <div class="answers_container">
+          <div class="options_wrapper"></div>
+          <button class="submit_btn">Submit Answer</button>
+          <span
+            ><img src="./assets/images/icon-error.svg" alt="error icon" />
+            Please select an answer
+          </span>
+        </div>
+      </div>
+      <div class="container_three" hidden>
+        <h4>Quiz completed <strong>You scored...</strong></h4>
+        <div class="result_wrapper"></div>
+        <div class="title">
+          <img
+            id="category_logo"
+            src="./assets/images/icon-html.svg"
+            alt="logo"
+          />
+          <h2 id="category_title">accessibility</h2>
+        </div>
+      </div>
+    </main>
+  </body>
 </html>
