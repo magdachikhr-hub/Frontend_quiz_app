@@ -13,6 +13,8 @@ interface Question {
   answer: string;
 }
 
+const categoryWrapper = document.querySelector(".category_wrapper");
+
 async function getData() {
   const response = await fetch("http://localhost:3000/quizzes");
   const data: Quiz[] = await response.json();
@@ -20,8 +22,9 @@ async function getData() {
   const newQuiz = new mainQuiz(data);
   //   newQuiz.scoreIncrease();
   //   console.log(newQuiz.score);
-  newQuiz.questionsTotalNumber();
-  console.log(newQuiz.questionsTotalNumber());
+  //   newQuiz.questionsTotalNumber();
+  //   console.log(newQuiz.questionsTotalNumber());
+  renderCategory(newQuiz.data);
 }
 
 getData();
@@ -30,13 +33,14 @@ class mainQuiz {
   data: Quiz[];
   score: number;
   currentQuestionIndex: number;
-  category: Quiz | null;
+  category: string | null;
+  categoryObj: Quiz | null;
   constructor(data: Quiz[]) {
     this.data = data;
     this.score = 0;
     this.currentQuestionIndex = 0;
     this.category = null;
-
+    this.categoryObj = null;
     console.log(this.data);
   }
 
@@ -47,6 +51,14 @@ class mainQuiz {
     this.currentQuestionIndex++;
   }
 
+  getCategory(chosenCat: any) {
+    this.category = chosenCat.title;
+    this.categoryObj = chosenCat;
+    return this.categoryObj;
+  }
+
+  //   getCatTitle() {}
+
   //   getCategory(choosen) {
   //     this.data.forEach((cat) => {
   //       this.category = cat;
@@ -55,6 +67,27 @@ class mainQuiz {
   //   }
 
   questionsTotalNumber() {
-    return this.category?.questions.length;
+    return this.categoryObj?.questions.length;
   }
+}
+
+function renderCategory(quizzes: any) {
+  quizzes.forEach((quiz: any) => {
+    console.log(quiz);
+
+    const button = document.createElement("button");
+    button.classList.add("category_btn");
+    button.textContent = quiz.title;
+
+    const img = document.createElement("img");
+    img.setAttribute("src", quiz.icon);
+
+    button.append(img);
+
+    categoryWrapper?.append(button);
+
+    button.addEventListener("click", () => {
+      quizzes.getCategory(quiz);
+    });
+  });
 }
