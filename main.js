@@ -9,7 +9,7 @@ async function getData() {
     //   console.log(newQuiz.score);
     //   newQuiz.questionsTotalNumber();
     //   console.log(newQuiz.questionsTotalNumber());
-    renderCategory(newQuiz.data);
+    renderCategory(newQuiz);
 }
 getData();
 class mainQuiz {
@@ -48,8 +48,8 @@ class mainQuiz {
         return this.categoryObj?.questions.length;
     }
 }
-function renderCategory(quizzes) {
-    quizzes.forEach((quiz) => {
+function renderCategory(instance) {
+    instance.data.forEach((quiz) => {
         console.log(quiz);
         const button = document.createElement("button");
         button.classList.add("category_btn");
@@ -59,7 +59,7 @@ function renderCategory(quizzes) {
         button.append(img);
         categoryWrapper?.append(button);
         button.addEventListener("click", () => {
-            quizzes.getCategory(quiz);
+            instance.getCategory(quiz);
         });
     });
 }

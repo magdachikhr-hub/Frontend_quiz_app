@@ -24,7 +24,7 @@ async function getData() {
   //   console.log(newQuiz.score);
   //   newQuiz.questionsTotalNumber();
   //   console.log(newQuiz.questionsTotalNumber());
-  renderCategory(newQuiz.data);
+  renderCategory(newQuiz);
 }
 
 getData();
@@ -71,8 +71,8 @@ class mainQuiz {
   }
 }
 
-function renderCategory(quizzes: any) {
-  quizzes.forEach((quiz: any) => {
+function renderCategory(instance: mainQuiz) {
+  instance.data.forEach((quiz) => {
     console.log(quiz);
 
     const button = document.createElement("button");
@@ -87,7 +87,7 @@ function renderCategory(quizzes: any) {
     categoryWrapper?.append(button);
 
     button.addEventListener("click", () => {
-      quizzes.getCategory(quiz);
+      instance.getCategory(quiz);
     });
   });
 }
